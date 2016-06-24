@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-  s.name         = "fave-button"
+  s.name         = "FaveButton"
   s.version      = "1.1.0"
   s.summary      = "Cute animated like button"
   s.license      = 'MIT'
