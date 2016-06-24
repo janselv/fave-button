@@ -171,13 +171,12 @@ extension FaveButton{
 // MARK: animation
 extension FaveButton{
     private func animateSelect(isSelected: Bool, duration: Double){
-        
         let color  = isSelected ? selectedColor : normalColor
-        let radius = bounds.size.scaleBy(1.3).width/2
         
         faveIcon.animateSelect(isSelected, fillColor: color, duration: duration, delay: 0.1)
         
         if isSelected{
+            let radius = bounds.size.scaleBy(1.3).width/2
             let ring   = Ring.createRing(self, radius: 0.01, lineWidth: 2, fillColor: self.circleFromColor)
             let sparks = createSparks(radius*0.8)
             
