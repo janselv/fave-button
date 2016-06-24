@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0AF23794C8104016A306F073179D69B6A58DDAC3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AE74BA04869E8D67158ED8267996D6E35C476D32" : 0,
+    "0AF23794C8104016A306F073179D69B6A58DDAC3" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4C9D43D1-1F49-4011-AB10-A1AA3339E7F9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AE74BA04869E8D67158ED8267996D6E35C476D32" : "..\/..\/..",
+    "0AF23794C8104016A306F073179D69B6A58DDAC3" : "FaveButtonDemo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "FaveButtonDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "FaveButtonDemo\/FaveButtonDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xhamr\/fave-button",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0AF23794C8104016A306F073179D69B6A58DDAC3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/computer-science\/book-samples.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AE74BA04869E8D67158ED8267996D6E35C476D32"
+    }
+  ]
+}

@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="width" constant="44" id="322-34-sEt"/>
                                     <constraint firstAttribute="height" constant="44" id="cTY-e3-P2H"/>
                                 </constraints>
-                                <state key="normal" image="1285C69A-DF6A-4112-BDA8-244490608E79"/>
+                                <state key="normal" image="5B841A63-8C8A-4D5E-A3CE-3EE6414F771C"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
                                         <color key="value" red="1" green="0.67450980392156867" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -143,7 +143,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1285C69A-DF6A-4112-BDA8-244490608E79" width="128" height="128">
+        <image name="5B841A63-8C8A-4D5E-A3CE-3EE6414F771C" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
