@@ -24,13 +24,13 @@ For manual instalation, drag Source folder into your project.
 os use [CocoaPod](https://cocoapods.org) adding this line to you `Podfile`:
 
 ```ruby
-	pod 'FaveButton'
+pod 'FaveButton'
 ```
 
 for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you `Cartfile`
 
 ```ruby
-	github "xhamr/fave-button"
+github "xhamr/fave-button"
 ```
 
 
