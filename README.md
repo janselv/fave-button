@@ -21,11 +21,11 @@ Favorite Animated Button
 
 For manual instalation, drag Source folder into your project.
 
-os use ![CocoaPod](https://cocoapods.org) adding this line to you `Podfile`:
+os use [CocoaPod](https://cocoapods.org) adding this line to you `Podfile`:
 
 ```ruby
 	pod 'FaveButton'
-``
+```
 
 for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you `Cartfile`
 
@@ -58,20 +58,20 @@ for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you
  5) ___Optional___ respond to delegate methods
 
  ```swift
-     func faveButton(faveButton: FaveButton, didSelected selected: Bool)    
-	 func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?     
+    func faveButton(faveButton: FaveButton, didSelected selected: Bool)    
+	func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?     
  ```
 
 
 #### In Code
 
 ```swift
-        let faveButton = FaveButton(
-            frame: CGRect(x:200, y:200, width: 44, height: 44),
-            faveIconNormal: UIImage(named: "heart")
-        )
-        faveButton.delegate = self
-        view.addSubview(faveButton)
+    let faveButton = FaveButton(
+        frame: CGRect(x:200, y:200, width: 44, height: 44),
+        faveIconNormal: UIImage(named: "heart")
+    )
+    faveButton.delegate = self
+    view.addSubview(faveButton)
 ```
 
 ## Manipulating dot colors
@@ -79,17 +79,17 @@ for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you
 If you want differents colors for dots like `Twitter’s Heart Animation` use the delegate method for the button you want.
 
 ```swift
-	func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?{
-		if faveButton == myFaveButton{
-			// return dot colors
-		}
-		return nil
+func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?{
+	if faveButton == myFaveButton{
+		// return dot colors
 	}
+	return nil
+}
 ```
 
-in the _DEMO__ app you will find a set of color to produce dot colors, like this:
+in [FaveButtonDemo](https://github.com/xhamr/fave-button/tree/master/FaveButtonDemo) you will find a set of color to produce dot colors, like this:
 
-![preview](https://github.com/xhamr/fave-button/blob/master/fave-button2.gif)
+![preview](https://github.com/xhamr/fave-button/blob/master/fave-button-2.gif)
 
 
 
