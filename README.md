@@ -47,31 +47,31 @@ for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you
 4) ___Optional___ manipulate porperties to change button settings
 
 ```swift
-    @IBInspectable public var normalColor:     UIColor
-    @IBInspectable public var selectedColor:   UIColor
-    @IBInspectable public var dotFirstColor:   UIColor
-    @IBInspectable public var dotSecondColor:  UIColor
-    @IBInspectable public var circleFromColor: UIColor
-    @IBInspectable public var circleToColor:   UIColor
+@IBInspectable public var normalColor:     UIColor
+@IBInspectable public var selectedColor:   UIColor
+@IBInspectable public var dotFirstColor:   UIColor
+@IBInspectable public var dotSecondColor:  UIColor
+@IBInspectable public var circleFromColor: UIColor
+@IBInspectable public var circleToColor:   UIColor
 ```
  
  5) ___Optional___ respond to delegate methods
 
  ```swift
-    func faveButton(faveButton: FaveButton, didSelected selected: Bool)    
-	func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?     
+func faveButton(faveButton: FaveButton, didSelected selected: Bool)    
+func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?     
  ```
 
 
 #### In Code
 
 ```swift
-    let faveButton = FaveButton(
-        frame: CGRect(x:200, y:200, width: 44, height: 44),
-        faveIconNormal: UIImage(named: "heart")
-    )
-    faveButton.delegate = self
-    view.addSubview(faveButton)
+let faveButton = FaveButton(
+    frame: CGRect(x:200, y:200, width: 44, height: 44),
+    faveIconNormal: UIImage(named: "heart")
+)
+faveButton.delegate = self
+view.addSubview(faveButton)
 ```
 
 ## Manipulating dot colors
@@ -89,7 +89,7 @@ func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?{
 
 in [FaveButtonDemo](https://github.com/xhamr/fave-button/tree/master/FaveButtonDemo) you will find a set of color to produce dot colors, like this:
 
-![preview](https://github.com/xhamr/fave-button/blob/master/fave-button-2.gif)
+![preview](https://github.com/xhamr/fave-button/blob/master/fave-button2.gif)
 
 
 
