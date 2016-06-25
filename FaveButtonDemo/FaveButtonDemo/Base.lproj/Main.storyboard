@@ -118,17 +118,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ZbO-ER-0SF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBN-4w-dcL" customClass="FaveButton" customModule="FaveButtonDemo" customModuleProvider="target">
-                                <rect key="frame" x="275" y="90" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Se1-k6-Hro"/>
-                                    <constraint firstAttribute="height" constant="50" id="vzc-Pn-XQF"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="heart"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="pSA-XD-rPV"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -136,14 +125,12 @@
                             <constraint firstItem="E0d-Bk-ChU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1:4" id="79R-Js-ei0"/>
                             <constraint firstItem="ULx-Fl-vuX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="7:4" id="994-ho-Xs9"/>
                             <constraint firstItem="xnp-Bx-c8g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ag8-c9-oqN"/>
-                            <constraint firstItem="JBN-4w-dcL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="70" id="Crp-hj-dhV"/>
                             <constraint firstItem="E0d-Bk-ChU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DZZ-oO-kw5"/>
                             <constraint firstItem="GUv-ku-yeg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="F2Y-jb-HQq"/>
                             <constraint firstItem="Ksy-xc-Hkw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Fli-mi-u7O"/>
                             <constraint firstItem="Ksy-xc-Hkw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="5:4" id="LLv-KX-mui"/>
                             <constraint firstItem="GUv-ku-yeg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="3:4" id="X3a-CJ-HQk"/>
                             <constraint firstItem="ULx-Fl-vuX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oYS-IY-bT0"/>
-                            <constraint firstItem="JBN-4w-dcL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zmT-QC-JVe"/>
                         </constraints>
                     </view>
                     <connections>
