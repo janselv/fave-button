@@ -6,7 +6,7 @@
 [![codebeat badge](https://codebeat.co/badges/580517f8-efc8-4d20-89aa-900531610144)](https://codebeat.co/projects/github-com-xhamr-fave-button)
 [![Build Status](https://travis-ci.org/xhamr/fave-button.svg?branch=master)](https://travis-ci.org/xhamr/fave-button)
 
-Favorite Animated Button
+Favorite Animated Button written in Swift
 
 
 ![preview](https://github.com/xhamr/fave-button/blob/master/fave-button1.gif)
@@ -95,7 +95,7 @@ in [FaveButtonDemo](https://github.com/xhamr/fave-button/tree/master/FaveButtonD
 
 ## Credits
 
-FaveButton was inspired by Twitter’s Heart Animation within their [App](https://itunes.apple.com/us/app/twitter/id333903271)
+FaveButton was inspired by Twitter’s Like Heart Animation within their [App](https://itunes.apple.com/us/app/twitter/id333903271)
 
 
 ## Licence
