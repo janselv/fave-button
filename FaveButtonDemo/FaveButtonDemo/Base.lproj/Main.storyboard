@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnp-Bx-c8g" customClass="FaveButton" customModule="FaveButtonDemo" customModuleProvider="target">
-                                <rect key="frame" x="285" y="510" width="30" height="30"/>
+                                <rect key="frame" x="288" y="516" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="PSw-kF-tW9"/>
-                                    <constraint firstAttribute="height" constant="30" id="U9y-pw-0B0"/>
+                                    <constraint firstAttribute="width" constant="24" id="PSw-kF-tW9"/>
+                                    <constraint firstAttribute="height" constant="24" id="U9y-pw-0B0"/>
                                 </constraints>
                                 <state key="normal" title="love" image="heart"/>
                                 <connections>

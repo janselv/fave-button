@@ -29,7 +29,7 @@ internal typealias DotRadius = (first: Double, second: Double)
 class Spark: UIView {
     
     private struct Const{
-        static let distance           = (vertical: 2.0, horizontal: 0.0)
+        static let distance           = (vertical: 4.0, horizontal: 0.0)
         static let expandKey          = "expandKey"
         static let dotSizeKey         = "dotSizeKey"
     }
@@ -101,7 +101,8 @@ extension Spark{
         dotFirst  = createDotView(dotRadius.first,  fillColor: firstColor)
         dotSecond = createDotView(dotRadius.second, fillColor: secondColor)
         
-        (dotFirst, self) >>- [.Top, .TrailingMargin]
+        
+        (dotFirst, self) >>- [.Trailing]
         attributes(.Width, .Height).forEach{ attr in
             dotFirst >>- {
                 $0.attribute  = attr
@@ -119,9 +120,14 @@ extension Spark{
             }
         }
         
-        distanceConstraint = (dotSecond, dotFirst) >>- {
-            $0.attribute       = .Top
-            $0.secondAttribute = .Bottom
+        (dotSecond,self) >>- {
+            $0.attribute = .Top
+            $0.constant  = CGFloat(dotRadius.first * 2.0 + Const.distance.vertical)
+        }
+        
+        distanceConstraint = (dotFirst, dotSecond) >>- {
+            $0.attribute       = .Bottom
+            $0.secondAttribute = .Top
             $0.constant        =  0
         }
         
@@ -144,44 +150,73 @@ extension Spark{
 
 // MARK: animation
 extension Spark{
-    func animateIgnite(radius: CGFloat, duration:Double, delay: Double = 0){
+    func animateIgniteShow(radius: CGFloat, duration:Double, delay: Double = 0){
         self.layoutIfNeeded()
         
         let diameter = (dotRadius.first * 2.0) + (dotRadius.second * 2.0)
         let height   = CGFloat(Double(radius) + diameter + Const.distance.vertical)
         
-        self.constraints.filter{ $0.identifier == Const.expandKey }.forEach{
-            $0.constant = height
+        if let constraint = self.constraints.filter({ $0.identifier == Const.expandKey }).first{
+            constraint.constant = height
         }
         
         UIView.animateWithDuration(0, delay: delay, options: .CurveLinear, animations: {
             self.alpha = 1
             }, completion: nil)
         
-        UIView.animateWithDuration(duration * 0.6, delay: delay, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(duration * 0.7, delay: delay, options: .CurveEaseOut, animations: {
             self.layoutIfNeeded()
             }, completion: nil)
-        
-        
-        [dotFirst,dotSecond].forEach{
-            $0.setNeedsLayout()
-            $0.constraints.filter{ $0.identifier == Const.dotSizeKey }.forEach{
-                $0.constant = 0
-            }
-        }
-        self.distanceConstraint?.constant = CGFloat(Const.distance.vertical)
+    }
+    
+    
+    func animateIgniteHide(duration: Double, delay: Double = 0){
+        self.layoutIfNeeded()
+        distanceConstraint?.constant = CGFloat(-Const.distance.vertical)
         
         UIView.animateWithDuration(
-            duration*0.6,
+            duration*0.5,
             delay: delay,
-            options: .CurveEaseInOut,
+            options: .CurveEaseOut,
+            animations: {
+                self.layoutIfNeeded()
+            }, completion: { succeed in
+        })
+        
+        UIView.animateWithDuration(
+            duration,
+            delay: delay,
+            options: .CurveEaseOut,
             animations: {
                 self.dotSecond.backgroundColor = self.firstColor
                 self.dotFirst.backgroundColor  = self.secondColor
-                
+            }, completion: nil)
+        
+        
+        for dot in [dotFirst, dotSecond]{
+            dot.setNeedsLayout()
+            dot.constraints.filter{ $0.identifier == Const.dotSizeKey }.forEach{
+                $0.constant = 0
+            }
+        }
+    
+        UIView.animateWithDuration(
+            duration,
+            delay: delay,
+            options: .CurveEaseOut,
+            animations: {
                 self.dotSecond.layoutIfNeeded()
+            }, completion:nil)
+        
+        
+        UIView.animateWithDuration(
+            duration*1.7,
+            delay: delay ,
+            options: .CurveEaseOut,
+            animations: {
                 self.dotFirst.layoutIfNeeded()
-            }, completion: { succeed in
+            }, completion: { succeed  in
+                
                 self.removeFromSuperview()
         })
     }

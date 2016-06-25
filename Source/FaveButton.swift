@@ -37,8 +37,11 @@ public protocol FaveButtonDelegate{
 public class FaveButton: UIButton {
     
     private struct Const{
-        static let duration         = 1.0
-        static let dotRadiusFactors = (first: 0.0833, second: 0.05)
+        static let duration             = 1.0
+        static let expandDuration       = 0.1298 
+        static let collapseDuration     = 0.1089
+        static let faveIconShowDelay    = Const.expandDuration + Const.collapseDuration/2.0
+        static let dotRadiusFactors     = (first: 0.0633, second: 0.04)
     }
     
     @IBInspectable public var normalColor: UIColor     = UIColor(colorLiteralRed: 137/255, green: 156/255, blue: 167/255, alpha: 1)
@@ -118,9 +121,10 @@ extension FaveButton{
         let step      = 360.0/Double(sparkGroupCount)
         let base      = Double(bounds.size.width)
         let dotRadius = (base * Const.dotRadiusFactors.first, base * Const.dotRadiusFactors.second)
+        let offset    = 10.0
         
         for index in 0..<sparkGroupCount{
-            let theta  = step * Double(index)
+            let theta  = step * Double(index) + offset
             let colors = dotColors(atIndex: index)
             
             let spark  = Spark.createSpark(self, radius: radius, firstColor: colors.first,secondColor: colors.second, angle: theta,
@@ -173,22 +177,28 @@ extension FaveButton{
     private func animateSelect(isSelected: Bool, duration: Double){
         let color  = isSelected ? selectedColor : normalColor
         
-        faveIcon.animateSelect(isSelected, fillColor: color, duration: duration, delay: 0.1)
+        faveIcon.animateSelect(isSelected, fillColor: color, duration: duration, delay: Const.faveIconShowDelay)
         
         if isSelected{
-            let radius = bounds.size.scaleBy(1.3).width/2
-            let ring   = Ring.createRing(self, radius: 0.01, lineWidth: 2, fillColor: self.circleFromColor)
-            let sparks = createSparks(radius*0.8)
+            let radius           = bounds.size.scaleBy(1.3).width/2 // ring radius
+            let igniteFromRadius = radius*0.8
+            let igniteToRadius   = radius*1.1
             
-            ring.animateToRadius(radius, toColor: circleToColor, duration: 0.1, delay: 0)
-            ring.animateColapse(radius, duration: 0.1, delay: 0.0899)
+            let ring   = Ring.createRing(self, radius: 0.01, lineWidth: 3, fillColor: self.circleFromColor)
+            let sparks = createSparks(igniteFromRadius)
             
+            ring.animateToRadius(radius, toColor: circleToColor, duration: Const.expandDuration, delay: 0)
+            ring.animateColapse(radius, duration: Const.collapseDuration, delay: Const.expandDuration)
+
             sparks.forEach{
-                $0.animateIgnite(radius*1.3, duration:0.7, delay: 0.0899)
+                $0.animateIgniteShow(igniteToRadius, duration:0.4, delay: Const.collapseDuration/3.0)
+                $0.animateIgniteHide(0.7, delay: 0.2)
             }
         }
     }
 }
+
+
 
 
 

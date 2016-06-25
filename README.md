@@ -87,7 +87,7 @@ func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?{
 }
 ```
 
-in [FaveButtonDemo](https://github.com/xhamr/fave-button/tree/master/FaveButtonDemo) you will find a set of color to produce dot colors, like this:
+in [FaveButtonDemo](https://github.com/xhamr/fave-button/tree/master/FaveButtonDemo) you will find a set of color to cause dots appear like this:
 
 ![preview](https://github.com/xhamr/fave-button/blob/master/fave-button2.gif)
 

@@ -100,24 +100,25 @@ extension FaveIcon{
             iconLayer.fillColor = fillColor.CGColor
         CATransaction.commit()
         
+        let selectedDelay = isSelected ? delay : 0
+        
         if isSelected{
             self.alpha = 0
-            
             UIView.animateWithDuration(
                 0,
-                delay: delay,
+                delay: selectedDelay,
                 options: .CurveLinear,
                 animations: {
                     self.alpha = 1
                 }, completion: nil)
-            
-            let scaleAnimation = Init(CAKeyframeAnimation(keyPath: "transform.scale")){
-                $0.values    = tweenValues!
-                $0.duration  = duration
-                $0.beginTime = CACurrentMediaTime()+delay
-            }
-            iconMask.addAnimation(scaleAnimation, forKey: nil)
         }
+        
+        let scaleAnimation = Init(CAKeyframeAnimation(keyPath: "transform.scale")){
+            $0.values    = tweenValues!
+            $0.duration  = duration
+            $0.beginTime = CACurrentMediaTime()+selectedDelay
+        }
+        iconMask.addAnimation(scaleAnimation, forKey: nil)
     }
     
     
