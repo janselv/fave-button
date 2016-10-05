@@ -25,8 +25,8 @@ import UIKit
 
 // file taken from https://github.com/xhamr/swift-penner-easing-functions
 
-typealias Easing        = (t:CGFloat,b:CGFloat,c:CGFloat,d:CGFloat)-> CGFloat
-typealias ElasticEasing = (t:CGFloat,b:CGFloat,c:CGFloat,d:CGFloat,a:CGFloat,p:CGFloat)-> CGFloat
+typealias Easing        = (_ t:CGFloat,_ b:CGFloat,_ c:CGFloat,_ d:CGFloat)-> CGFloat
+typealias ElasticEasing = (_ t:CGFloat,_ b:CGFloat,_ c:CGFloat,_ d:CGFloat,_ a:CGFloat,_ p:CGFloat)-> CGFloat
 
 // ELASTIC EASING
 

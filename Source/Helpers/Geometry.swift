@@ -31,14 +31,14 @@ extension CGRect{
 }
 
 extension CGSize{
-    func rectCentered(at at:CGPoint) -> CGRect{
+    func rectCentered(at:CGPoint) -> CGRect{
         let dx = self.width/2
         let dy = self.height/2
         let origin = CGPoint(x: at.x - dx, y: at.y - dy )
         return CGRect(origin: origin, size: self)
     }
     
-    func scaleBy(factor:CGFloat) -> CGSize{
+    func scaleBy(_ factor:CGFloat) -> CGSize{
         return CGSize(width: self.width*factor, height: self.height*factor)
     }
 }

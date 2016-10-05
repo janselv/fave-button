@@ -28,25 +28,26 @@ import UIKit
 struct Constraint{
     var identifier: String?
     
-    var attribute: NSLayoutAttribute = .CenterX
-    var secondAttribute: NSLayoutAttribute = .NotAnAttribute
+    var attribute: NSLayoutAttribute = .centerX
+    var secondAttribute: NSLayoutAttribute = .notAnAttribute
     var constant: CGFloat = 0
     var multiplier: CGFloat = 1
-    var relation: NSLayoutRelation = .Equal
+    var relation: NSLayoutRelation = .equal
 }
 
-func attributes(attrs:NSLayoutAttribute...) -> [NSLayoutAttribute]{
+func attributes(_ attrs:NSLayoutAttribute...) -> [NSLayoutAttribute]{
     return attrs
 }
 
-infix operator >>- { associativity left precedence 160 }
+//infix operator >>- { associativity left precedence 160 }
+infix operator >>- : DefaultPrecedence
 
 
-func >>- <T: UIView> (lhs: (T,T), @noescape apply: (inout Constraint) -> () ) -> NSLayoutConstraint {
+@discardableResult func >>- <T: UIView> (lhs: (T,T), apply: (inout Constraint) -> () ) -> NSLayoutConstraint {
     var const = Constraint()
     apply(&const)
     
-    const.secondAttribute = .NotAnAttribute == const.secondAttribute ? const.attribute : const.secondAttribute
+    const.secondAttribute = .notAnAttribute == const.secondAttribute ? const.attribute : const.secondAttribute
     
     let constraint = NSLayoutConstraint(item: lhs.0,
                                         attribute: const.attribute,
@@ -58,12 +59,12 @@ func >>- <T: UIView> (lhs: (T,T), @noescape apply: (inout Constraint) -> () ) ->
     
     constraint.identifier = const.identifier
     
-    NSLayoutConstraint.activateConstraints([constraint])
+    NSLayoutConstraint.activate([constraint])
     return constraint
 }
 
 
-func >>- <T: UIView> (lhs: T, @noescape apply: (inout Constraint) -> () ) -> NSLayoutConstraint {
+@discardableResult  func >>- <T: UIView> (lhs: T, apply: (inout Constraint) -> () ) -> NSLayoutConstraint {
     var const = Constraint()
     apply(&const)
     
@@ -76,7 +77,7 @@ func >>- <T: UIView> (lhs: T, @noescape apply: (inout Constraint) -> () ) -> NSL
                                         constant: const.constant)
     constraint.identifier = const.identifier
     
-    NSLayoutConstraint.activateConstraints([constraint])
+    NSLayoutConstraint.activate([constraint])
     return constraint
 }
 
@@ -84,8 +85,8 @@ func >>- <T: UIView> (lhs: T, @noescape apply: (inout Constraint) -> () ) -> NSL
 
 func >>- <T:UIView> (lhs: (T,T),attributes: [NSLayoutAttribute]){
     for attribute in attributes{
-        lhs >>- {
-            $0.attribute = attribute
+        lhs >>- { (i: inout Constraint) in
+            i.attribute = attribute
         }
     }
 }
@@ -93,8 +94,8 @@ func >>- <T:UIView> (lhs: (T,T),attributes: [NSLayoutAttribute]){
 
 func >>- <T:UIView> (lhs: T, attributes: [NSLayoutAttribute]){
     for attribute in attributes{
-        lhs >>- {
-            $0.attribute = attribute
+        lhs >>- { (i: inout Constraint) in
+            i.attribute = attribute
         }
     }
 }

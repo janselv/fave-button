@@ -10,7 +10,7 @@ import UIKit
 import FaveButton
 
 
-func color(rgbColor: Int) -> UIColor{
+func color(_ rgbColor: Int) -> UIColor{
     return UIColor(
         red:   CGFloat((rgbColor & 0xFF0000) >> 16) / 255.0,
         green: CGFloat((rgbColor & 0x00FF00) >> 8 ) / 255.0,
@@ -32,12 +32,11 @@ class ViewController: UIViewController, FaveButtonDelegate{
         DotColors(first: color(0xF68FA7), second: color(0xF6A2B8))
     ]
     
-    func faveButton(faveButton: FaveButton, didSelected selected: Bool){
-        
+    func faveButton(_ faveButton: FaveButton, didSelected selected: Bool){
     }
     
-    func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?{
-        if( faveButton == heartButton || faveButton == loveButton){
+    func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{
+        if( faveButton === heartButton || faveButton === loveButton){
             return colors
         }
         return nil

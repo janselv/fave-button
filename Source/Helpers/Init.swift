@@ -24,8 +24,8 @@
 
 import Foundation
 
-@warn_unused_result
-func Init<T>( object: T, @noescape block: T throws -> ()) rethrows -> T{
+
+func Init<T>( _ object: T, block: (T) throws -> ()) rethrows -> T{
     try block(object)
     return object
 }

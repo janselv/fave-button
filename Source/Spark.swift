@@ -28,7 +28,7 @@ internal typealias DotRadius = (first: Double, second: Double)
 
 class Spark: UIView {
     
-    private struct Const{
+    fileprivate struct Const{
         static let distance           = (vertical: 4.0, horizontal: 0.0)
         static let expandKey          = "expandKey"
         static let dotSizeKey         = "dotSizeKey"
@@ -42,11 +42,11 @@ class Spark: UIView {
     
     var dotRadius: DotRadius!
     
-    private var dotFirst:  UIView!
-    private var dotSecond: UIView!
+    fileprivate var dotFirst:  UIView!
+    fileprivate var dotSecond: UIView!
     
     
-    private var distanceConstraint: NSLayoutConstraint?
+    fileprivate var distanceConstraint: NSLayoutConstraint?
     
     init(radius: CGFloat, firstColor: UIColor, secondColor: UIColor, angle: Double, dotRadius: DotRadius){
         self.radius      = radius
@@ -54,7 +54,7 @@ class Spark: UIView {
         self.secondColor = secondColor
         self.angle       = angle
         self.dotRadius   = dotRadius
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         applyInit()
     }
@@ -68,27 +68,27 @@ class Spark: UIView {
 // MARK: create
 extension Spark{
     
-    class func createSpark(faveButton: FaveButton, radius: CGFloat, firstColor: UIColor, secondColor: UIColor, angle: Double, dotRadius: DotRadius) -> Spark{
+    class func createSpark(_ faveButton: FaveButton, radius: CGFloat, firstColor: UIColor, secondColor: UIColor, angle: Double, dotRadius: DotRadius) -> Spark{
         
         let spark = Init(Spark(radius: radius, firstColor: firstColor, secondColor: secondColor, angle: angle, dotRadius: dotRadius)){
             $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.backgroundColor                           = .clearColor()
+            $0.backgroundColor                           = .clear
             $0.layer.anchorPoint                         = CGPoint(x: 0.5, y: 1)
             $0.alpha                                     = 0.0
         }
         faveButton.superview?.insertSubview(spark, belowSubview: faveButton)
         
-        (spark, faveButton) >>- [.CenterX, .CenterY]
+        (spark, faveButton) >>- [.centerX, .centerY]
         
         let width = CGFloat((dotRadius.first * 2.0 + dotRadius.second * 2.0) + Const.distance.horizontal)
         spark >>- {
-            $0.attribute  = .Width
+            $0.attribute  = .width
             $0.constant   =  width
         }
         
         let height = CGFloat(Double(radius) + (dotRadius.first * 2.0 + dotRadius.second * 2.0))
         spark >>- {
-            $0.attribute  = .Height
+            $0.attribute  = .height
             $0.constant   =  height
             $0.identifier =  Const.expandKey
         }
@@ -97,13 +97,13 @@ extension Spark{
     }
     
     
-    private func applyInit(){
+    fileprivate func applyInit(){
         dotFirst  = createDotView(dotRadius.first,  fillColor: firstColor)
         dotSecond = createDotView(dotRadius.second, fillColor: secondColor)
         
         
-        (dotFirst, self) >>- [.Trailing]
-        attributes(.Width, .Height).forEach{ attr in
+        (dotFirst, self) >>- [.trailing]
+        attributes(.width, .height).forEach{ attr in
             dotFirst >>- {
                 $0.attribute  = attr
                 $0.constant   = CGFloat(dotRadius.first * 2.0)
@@ -111,8 +111,8 @@ extension Spark{
             }
         }
         
-        (dotSecond,self) >>- [.Leading]
-        attributes(.Width,.Height).forEach{ attr in
+        (dotSecond,self) >>- [.leading]
+        attributes(.width,.height).forEach{ attr in
             dotSecond >>- {
                 $0.attribute  = attr
                 $0.constant   = CGFloat(dotRadius.second * 2.0)
@@ -121,22 +121,22 @@ extension Spark{
         }
         
         (dotSecond,self) >>- {
-            $0.attribute = .Top
+            $0.attribute = .top
             $0.constant  = CGFloat(dotRadius.first * 2.0 + Const.distance.vertical)
         }
         
         distanceConstraint = (dotFirst, dotSecond) >>- {
-            $0.attribute       = .Bottom
-            $0.secondAttribute = .Top
+            $0.attribute       = .bottom
+            $0.secondAttribute = .top
             $0.constant        =  0
         }
         
-        self.transform = CGAffineTransformMakeRotation(CGFloat(angle.degrees))
+        self.transform = CGAffineTransform(rotationAngle: CGFloat(angle.degrees))
     }
     
     
-    private func createDotView(radius: Double, fillColor: UIColor) -> UIView{
-        let dot = Init(UIView(frame: CGRectZero)){
+    fileprivate func createDotView(_ radius: Double, fillColor: UIColor) -> UIView{
+        let dot = Init(UIView(frame: CGRect.zero)){
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.backgroundColor                           = fillColor
             $0.layer.cornerRadius                        = CGFloat(radius)
@@ -150,7 +150,7 @@ extension Spark{
 
 // MARK: animation
 extension Spark{
-    func animateIgniteShow(radius: CGFloat, duration:Double, delay: Double = 0){
+    func animateIgniteShow(_ radius: CGFloat, duration:Double, delay: Double = 0){
         self.layoutIfNeeded()
         
         let diameter = (dotRadius.first * 2.0) + (dotRadius.second * 2.0)
@@ -160,33 +160,33 @@ extension Spark{
             constraint.constant = height
         }
         
-        UIView.animateWithDuration(0, delay: delay, options: .CurveLinear, animations: {
+        UIView.animate(withDuration: 0, delay: delay, options: .curveLinear, animations: {
             self.alpha = 1
             }, completion: nil)
         
-        UIView.animateWithDuration(duration * 0.7, delay: delay, options: .CurveEaseOut, animations: {
+        UIView.animate(withDuration: duration * 0.7, delay: delay, options: .curveEaseOut, animations: {
             self.layoutIfNeeded()
             }, completion: nil)
     }
     
     
-    func animateIgniteHide(duration: Double, delay: Double = 0){
+    func animateIgniteHide(_ duration: Double, delay: Double = 0){
         self.layoutIfNeeded()
         distanceConstraint?.constant = CGFloat(-Const.distance.vertical)
         
-        UIView.animateWithDuration(
-            duration*0.5,
+        UIView.animate(
+            withDuration: duration*0.5,
             delay: delay,
-            options: .CurveEaseOut,
+            options: .curveEaseOut,
             animations: {
                 self.layoutIfNeeded()
             }, completion: { succeed in
         })
         
-        UIView.animateWithDuration(
-            duration,
+        UIView.animate(
+            withDuration: duration,
             delay: delay,
-            options: .CurveEaseOut,
+            options: .curveEaseOut,
             animations: {
                 self.dotSecond.backgroundColor = self.firstColor
                 self.dotFirst.backgroundColor  = self.secondColor
@@ -194,25 +194,25 @@ extension Spark{
         
         
         for dot in [dotFirst, dotSecond]{
-            dot.setNeedsLayout()
-            dot.constraints.filter{ $0.identifier == Const.dotSizeKey }.forEach{
+            dot?.setNeedsLayout()
+            dot?.constraints.filter{ $0.identifier == Const.dotSizeKey }.forEach{
                 $0.constant = 0
             }
         }
     
-        UIView.animateWithDuration(
-            duration,
+        UIView.animate(
+            withDuration: duration,
             delay: delay,
-            options: .CurveEaseOut,
+            options: .curveEaseOut,
             animations: {
                 self.dotSecond.layoutIfNeeded()
             }, completion:nil)
         
         
-        UIView.animateWithDuration(
-            duration*1.7,
+        UIView.animate(
+            withDuration: duration*1.7,
             delay: delay ,
-            options: .CurveEaseOut,
+            options: .curveEaseOut,
             animations: {
                 self.dotFirst.layoutIfNeeded()
             }, completion: { succeed  in

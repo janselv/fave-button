@@ -26,7 +26,7 @@ import UIKit
 
 class Ring: UIView {
     
-    private struct Const{
+    fileprivate struct Const{
         static let collapseAnimation = "collapseAnimation"
         static let sizeKey           = "sizeKey"
     }
@@ -40,7 +40,7 @@ class Ring: UIView {
         self.fillColor = fillColor
         self.radius    = radius
         self.lineWidth = lineWidth
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         applyInit()
     }
@@ -54,18 +54,18 @@ class Ring: UIView {
 // MARK: create
 extension Ring{
     
-    class func createRing(faveButton: FaveButton, radius: CGFloat, lineWidth: CGFloat, fillColor: UIColor) -> Ring{
+    class func createRing(_ faveButton: FaveButton, radius: CGFloat, lineWidth: CGFloat, fillColor: UIColor) -> Ring{
         
         let ring = Init(Ring(radius: radius, lineWidth:lineWidth, fillColor: fillColor)){
             $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.backgroundColor                           = .clearColor()
+            $0.backgroundColor                           = .clear
         }
         
         faveButton.superview?.insertSubview(ring, belowSubview: faveButton)
         
-        (ring,faveButton) >>- [.CenterX, .CenterY]
+        (ring,faveButton) >>- [.centerX, .centerY]
         
-        attributes(.Width, .Height).forEach{ attr in
+        attributes(.width, .height).forEach{ attr in
             ring >>- {
                 $0.attribute  = attr
                 $0.constant   = radius * 2
@@ -77,32 +77,32 @@ extension Ring{
     }
     
     
-    private func applyInit(){
-        let centerView = Init(UIView(frame: CGRectZero)){
+    fileprivate func applyInit(){
+        let centerView = Init(UIView(frame: CGRect.zero)){
             $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.backgroundColor                           = .clearColor()
+            $0.backgroundColor                           = .clear
         }
         self.addSubview(centerView)
         
-        (centerView, self) >>- [ .CenterY, .CenterX ]
+        (centerView, self) >>- [ .centerY, .centerX ]
         
-        centerView >>- [.Width, .Height]
+        centerView >>- [.width, .height]
         
-        let circle = createRingLayer(radius, lineWidth: lineWidth, fillColor: .clearColor(), strokeColor: fillColor)
+        let circle = createRingLayer(radius, lineWidth: lineWidth, fillColor: .clear, strokeColor: fillColor)
         centerView.layer.addSublayer(circle)
         
         self.ringLayer = circle
     }
     
     
-    private func createRingLayer(radius: CGFloat, lineWidth: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer{
-        let circle = UIBezierPath(arcCenter: CGPointZero, radius: radius - lineWidth/2, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
+    fileprivate func createRingLayer(_ radius: CGFloat, lineWidth: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer{
+        let circle = UIBezierPath(arcCenter: CGPoint.zero, radius: radius - lineWidth/2, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
         
         let ring = Init(CAShapeLayer()){
-            $0.path         = circle.CGPath
-            $0.fillColor    = fillColor.CGColor
+            $0.path         = circle.cgPath
+            $0.fillColor    = fillColor.cgColor
             $0.lineWidth    = 0
-            $0.strokeColor  = strokeColor.CGColor
+            $0.strokeColor  = strokeColor.cgColor
         }
         return ring
     }
@@ -111,7 +111,7 @@ extension Ring{
 // MARK : animation
 extension Ring{
     
-    func animateToRadius(radius: CGFloat, toColor: UIColor, duration: Double, delay: Double = 0){
+    func animateToRadius(_ radius: CGFloat, toColor: UIColor, duration: Double, delay: Double = 0){
         self.layoutIfNeeded()
         
         self.constraints.filter{ $0.identifier == Const.sizeKey }.forEach{
@@ -125,38 +125,38 @@ extension Ring{
         let lineColorAnimation  = animationStrokeColor(toColor, duration: duration, delay: delay)
         let circlePathAnimation = animationCirclePath(fittedRadius, duration: duration, delay: delay)
         
-        UIView.animateWithDuration(
-            duration,
+        UIView.animate(
+            withDuration: duration,
             delay: delay,
-            options: .CurveLinear,
+            options: .curveLinear,
             animations: {
                 self.layoutIfNeeded()
             }, completion: nil)
         
     
-        ringLayer.addAnimation(fillColorAnimation, forKey: nil)
-        ringLayer.addAnimation(lineWidthAnimation, forKey: nil)
-        ringLayer.addAnimation(lineColorAnimation, forKey: nil)
-        ringLayer.addAnimation(circlePathAnimation, forKey: nil)
+        ringLayer.add(fillColorAnimation, forKey: nil)
+        ringLayer.add(lineWidthAnimation, forKey: nil)
+        ringLayer.add(lineColorAnimation, forKey: nil)
+        ringLayer.add(circlePathAnimation, forKey: nil)
     }
     
     
-    func animateColapse(radius: CGFloat, duration: Double, delay: Double = 0){
+    func animateColapse(_ radius: CGFloat, duration: Double, delay: Double = 0){
         let lineWidthAnimation  = animationLineWidth(0, duration: duration, delay: delay)
         let circlePathAnimation = animationCirclePath(radius, duration: duration, delay: delay)
      
         circlePathAnimation.delegate = self
         circlePathAnimation.setValue(Const.collapseAnimation, forKey: Const.collapseAnimation)
         
-        ringLayer.addAnimation(lineWidthAnimation, forKey: nil)
-        ringLayer.addAnimation(circlePathAnimation, forKey: nil)
+        ringLayer.add(lineWidthAnimation, forKey: nil)
+        ringLayer.add(circlePathAnimation, forKey: nil)
     }
     
     
-    private func animationFillColor(fromColor:UIColor, toColor: UIColor, duration: Double, delay: Double = 0) -> CABasicAnimation{
+    fileprivate func animationFillColor(_ fromColor:UIColor, toColor: UIColor, duration: Double, delay: Double = 0) -> CABasicAnimation{
         let animation = Init(CABasicAnimation(keyPath: "fillColor")){
-            $0.fromValue      = fromColor.CGColor
-            $0.toValue        = toColor.CGColor
+            $0.fromValue      = fromColor.cgColor
+            $0.toValue        = toColor.cgColor
             $0.duration       = duration
             $0.beginTime      = CACurrentMediaTime() + delay
             $0.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
@@ -166,49 +166,53 @@ extension Ring{
     }
     
     
-    private func animationStrokeColor(strokeColor: UIColor, duration: Double, delay: Double) -> CABasicAnimation{
+    fileprivate func animationStrokeColor(_ strokeColor: UIColor, duration: Double, delay: Double) -> CABasicAnimation{
         let animation = Init(CABasicAnimation(keyPath: "strokeColor")){
-            $0.toValue             = strokeColor.CGColor
+            $0.toValue             = strokeColor.cgColor
             $0.duration            = duration
             $0.beginTime           = CACurrentMediaTime() + delay
             $0.fillMode            = kCAFillModeForwards
-            $0.removedOnCompletion = false
+            $0.isRemovedOnCompletion = false
             $0.timingFunction      = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         }
         return animation
     }
     
     
-    private func animationLineWidth(lineWidth: CGFloat, duration: Double, delay: Double = 0) -> CABasicAnimation{
+    fileprivate func animationLineWidth(_ lineWidth: CGFloat, duration: Double, delay: Double = 0) -> CABasicAnimation{
         let animation = Init(CABasicAnimation(keyPath: "lineWidth")){
             $0.toValue              = lineWidth
             $0.duration             = duration
             $0.beginTime            = CACurrentMediaTime() + delay
             $0.fillMode             = kCAFillModeForwards
-            $0.removedOnCompletion  = false
+            $0.isRemovedOnCompletion  = false
             $0.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         }
         return animation
     }
     
     
-    private func animationCirclePath(radius: CGFloat, duration: Double, delay: Double) -> CABasicAnimation{
-        let path = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
+    fileprivate func animationCirclePath(_ radius: CGFloat, duration: Double, delay: Double) -> CABasicAnimation{
+        let path = UIBezierPath(arcCenter: CGPoint.zero, radius: radius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
         
         let animation = Init(CABasicAnimation(keyPath: "path")){
-            $0.toValue              = path.CGPath
+            $0.toValue              = path.cgPath
             $0.duration             = duration
             $0.beginTime            = CACurrentMediaTime() + delay
             $0.fillMode             = kCAFillModeForwards
-            $0.removedOnCompletion  = false
+            $0.isRemovedOnCompletion  = false
             $0.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         }
         return animation
     }
+}
+
+
+// MARK: CAAnimationDelegate
+extension Ring : CAAnimationDelegate{
     
-    
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-        if let _ = anim.valueForKey(Const.collapseAnimation){
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if let _ = anim.value(forKey: Const.collapseAnimation){
             self.removeFromSuperview()
         }
     }

@@ -24,7 +24,8 @@ For manual instalation, drag Source folder into your project.
 os use [CocoaPod](https://cocoapods.org) adding this line to you `Podfile`:
 
 ```ruby
-pod 'FaveButton'
+pod 'FaveButton', '~> 1.2.1' swift 2.2
+pod 'FaveButton', '~> 2.0.0' swift 3
 ```
 
 for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you `Cartfile`
@@ -79,7 +80,7 @@ view.addSubview(faveButton)
 If you want differents colors for dots like `Twitter’s Heart Animation` use the delegate method for the button you want.
 
 ```swift
-func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?{
+func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{
 	if faveButton == myFaveButton{
 		// return dot colors
 	}
