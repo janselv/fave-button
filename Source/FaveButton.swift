@@ -36,7 +36,7 @@ public protocol FaveButtonDelegate{
 
 
 // MARK: Default implementation
-extension FaveButtonDelegate{
+public extension FaveButtonDelegate{
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{ return nil }
 }
 
