@@ -35,6 +35,11 @@ public protocol FaveButtonDelegate{
 }
 
 
+// MARK: Default implementation
+extension FaveButtonDelegate{
+    func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{ return nil }
+}
+
 open class FaveButton: UIButton {
     
     fileprivate struct Const{
@@ -52,7 +57,7 @@ open class FaveButton: UIButton {
     @IBInspectable open var circleFromColor: UIColor = UIColor(colorLiteralRed: 221/255, green: 70/255,  blue: 136/255, alpha: 1)
     @IBInspectable open var circleToColor: UIColor   = UIColor(colorLiteralRed: 205/255, green: 143/255, blue: 246/255, alpha: 1)
     
-    @IBOutlet open var delegate: AnyObject?
+    @IBOutlet open weak var delegate: AnyObject?
     
     fileprivate(set) var sparkGroupCount: Int = 7
     
