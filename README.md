@@ -25,6 +25,7 @@ os use [CocoaPod](https://cocoapods.org) adding this line to you `Podfile`:
 
 ```ruby
 pod 'FaveButton', '~> 1.2.1' swift 2.2
+
 pod 'FaveButton', '~> 2.0.0' swift 3
 ```
 
