@@ -29,6 +29,9 @@ import UIKit
 public typealias DotColors = (first: UIColor, second: UIColor)
 
 public protocol FaveButtonDelegate{
+
+    func instantCallback(_ faveButton: FaveButton, didSelected selected: Bool) //Returns exactly when the user clicked the button(not wait animation)
+
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool)
     
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?
@@ -50,6 +53,8 @@ open class FaveButton: UIButton {
         static let dotRadiusFactors     = (first: 0.0633, second: 0.04)
     }
     
+    public var canReceiveClick: Bool = true // Status switch - when the button can receive another click
+
     @IBInspectable open var normalColor: UIColor     = UIColor(colorLiteralRed: 137/255, green: 156/255, blue: 167/255, alpha: 1)
     @IBInspectable open var selectedColor: UIColor   = UIColor(colorLiteralRed: 226/255, green: 38/255,  blue: 77/255,  alpha: 1)
     @IBInspectable open var dotFirstColor: UIColor   = UIColor(colorLiteralRed: 152/255, green: 219/255, blue: 236/255, alpha: 1)
@@ -183,15 +188,18 @@ extension FaveButton{
     }
     
     func toggle(_ sender: FaveButton){
-        sender.isSelected = !sender.isSelected
-        
-        guard case let delegate as FaveButtonDelegate = self.delegate else{
-            return
-        }
-        
-        let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: delay){
-            delegate.faveButton(sender, didSelected: sender.isSelected)
+        if canReceiveClick {
+            sender.isSelected = !sender.isSelected
+
+            guard case let delegate as FaveButtonDelegate = self.delegate else{
+                return
+            }
+            delegate.instantCallback(sender, didSelected: sender.isSelected)
+
+            let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: delay){
+                delegate.faveButton(sender, didSelected: sender.isSelected)
+            }
         }
     }
 }
