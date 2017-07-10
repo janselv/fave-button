@@ -90,7 +90,7 @@ extension FaveIcon{
 // MARK : animation
 extension FaveIcon{
     
-    func animateSelect(_ isSelected: Bool = false, fillColor: UIColor, duration: Double = 0.5, delay: Double = 0){
+    func animateSelect(_ isSelected: Bool = false, fillColor: UIColor, duration: Double = 0.5, delay: Double = 0, animationsEnabled: Bool){
         if nil == tweenValues{
             tweenValues = generateTweenValues(from: 0, to: 1.0, duration: CGFloat(duration))
         }
@@ -100,25 +100,27 @@ extension FaveIcon{
             iconLayer.fillColor = fillColor.cgColor
         CATransaction.commit()
         
-        let selectedDelay = isSelected ? delay : 0
-        
-        if isSelected{
-            self.alpha = 0
-            UIView.animate(
-                withDuration: 0,
-                delay: selectedDelay,
-                options: .curveLinear,
-                animations: {
-                    self.alpha = 1
-                }, completion: nil)
+        if animationsEnabled {
+            let selectedDelay = isSelected ? delay : 0
+            
+            if isSelected{
+                self.alpha = 0
+                UIView.animate(
+                    withDuration: 0,
+                    delay: selectedDelay,
+                    options: .curveLinear,
+                    animations: {
+                        self.alpha = 1
+                    }, completion: nil)
+            }
+            
+            let scaleAnimation = Init(CAKeyframeAnimation(keyPath: "transform.scale")){
+                $0.values    = tweenValues!
+                $0.duration  = duration
+                $0.beginTime = CACurrentMediaTime()+selectedDelay
+            }
+            iconMask.add(scaleAnimation, forKey: nil)
         }
-        
-        let scaleAnimation = Init(CAKeyframeAnimation(keyPath: "transform.scale")){
-            $0.values    = tweenValues!
-            $0.duration  = duration
-            $0.beginTime = CACurrentMediaTime()+selectedDelay
-        }
-        iconMask.add(scaleAnimation, forKey: nil)
     }
     
     
