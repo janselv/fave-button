@@ -96,7 +96,7 @@ extension Ring{
     
     
     fileprivate func createRingLayer(_ radius: CGFloat, lineWidth: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer{
-        let circle = UIBezierPath(arcCenter: CGPoint.zero, radius: radius - lineWidth/2, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
+        let circle = UIBezierPath(arcCenter: CGPoint.zero, radius: radius - lineWidth/2, startAngle: 0, endAngle: CGFloat(2*Double.pi), clockwise: true)
         
         let ring = Init(CAShapeLayer()){
             $0.path         = circle.cgPath
@@ -193,7 +193,7 @@ extension Ring{
     
     
     fileprivate func animationCirclePath(_ radius: CGFloat, duration: Double, delay: Double) -> CABasicAnimation{
-        let path = UIBezierPath(arcCenter: CGPoint.zero, radius: radius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: true)
+        let path = UIBezierPath(arcCenter: CGPoint.zero, radius: radius, startAngle: 0, endAngle: CGFloat(2*Double.pi), clockwise: true)
         
         let animation = Init(CABasicAnimation(keyPath: "path")){
             $0.toValue              = path.cgPath
