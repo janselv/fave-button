@@ -162,7 +162,7 @@ extension FaveButton{
         self.addTarget(self, action: #selector(toggle(_:)), for: .touchUpInside)
     }
     
-    func toggle(_ sender: FaveButton){
+    @objc func toggle(_ sender: FaveButton){
         sender.isSelected = !sender.isSelected
         
         guard case let delegate as FaveButtonDelegate = self.delegate else{
