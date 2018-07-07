@@ -64,6 +64,7 @@ open class FaveButton: UIButton {
     fileprivate var faveIconImage:UIImage?
     fileprivate var faveIcon: FaveIcon!
     
+    open var disableWhenAnimated : Bool = false
     
     override open var isSelected: Bool{
         didSet{
@@ -163,6 +164,10 @@ extension FaveButton{
     }
     
     @objc func toggle(_ sender: FaveButton){
+        if disableWhenAnimated {
+            self.isUserInteractionEnabled = false
+        }
+        
         sender.isSelected = !sender.isSelected
         
         guard case let delegate as FaveButtonDelegate = self.delegate else{
@@ -172,6 +177,9 @@ extension FaveButton{
         let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delay){
             delegate.faveButton(sender, didSelected: sender.isSelected)
+            if self.disableWhenAnimated {
+                self.isUserInteractionEnabled = true
+            }
         }
     }
 }
