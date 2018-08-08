@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Delegate-->
@@ -15,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnp-Bx-c8g" customClass="FaveButton" customModule="FaveButtonDemo" customModuleProvider="target">
-                                <rect key="frame" x="288" y="516" width="24" height="24"/>
+                                <rect key="frame" x="175.5" y="583" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="PSw-kF-tW9"/>
                                     <constraint firstAttribute="height" constant="24" id="U9y-pw-0B0"/>
@@ -30,7 +34,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-Bk-ChU" userLabel="star" customClass="FaveButton" customModule="FaveButtonDemo" customModuleProvider="target">
-                                <rect key="frame" x="53" y="278" width="44" height="44"/>
+                                <rect key="frame" x="25" y="311.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="322-34-sEt"/>
                                     <constraint firstAttribute="height" constant="44" id="cTY-e3-P2H"/>
@@ -38,19 +42,19 @@
                                 <state key="normal" image="star"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                        <color key="value" red="1" green="0.67450980392156867" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="1" green="0.67450980392156867" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="dotSecondColor">
-                                        <color key="value" red="0.9882352941176471" green="0.40392156862745099" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.9882352941176471" green="0.40392156862745099" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="dotFirstColor">
-                                        <color key="value" red="0.99607843137254903" green="0.65490196078431373" blue="0.027450980392156862" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.99607843137254903" green="0.65490196078431373" blue="0.027450980392156862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="circleFromColor">
-                                        <color key="value" red="0.9882352941176471" green="0.40392156862745099" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.9882352941176471" green="0.40392156862745099" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="circleToColor">
-                                        <color key="value" red="1" green="0.67450980392156867" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="1" green="0.67450980392156867" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -58,18 +62,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUv-ku-yeg" userLabel="heart" customClass="FaveButton" customModule="FaveButtonDemo" customModuleProvider="target">
-                                <rect key="frame" x="203" y="278" width="44" height="44"/>
+                                <rect key="frame" x="118.5" y="311.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="ICX-nz-LkC"/>
                                     <constraint firstAttribute="width" constant="44" id="Xvm-2b-Lnp"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="heart"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="VEs-rY-5i8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ksy-xc-Hkw" userLabel="smile" customClass="FaveButton" customModule="FaveButtonDemo" customModuleProvider="target">
-                                <rect key="frame" x="353" y="278" width="44" height="44"/>
+                                <rect key="frame" x="212.5" y="311.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="dmb-uR-WOY"/>
                                     <constraint firstAttribute="width" constant="44" id="iPo-lc-Q96"/>
@@ -77,13 +86,13 @@
                                 <state key="normal" title="Button" image="smile"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                        <color key="value" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="circleFromColor">
-                                        <color key="value" red="0.76470588235294112" green="0.82745098039215681" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.76470588235294112" green="0.82745098039215681" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="circleToColor">
-                                        <color key="value" red="0.23137254901960785" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.23137254901960785" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -91,7 +100,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULx-Fl-vuX" userLabel="like" customClass="FaveButton" customModule="FaveButtonDemo" customModuleProvider="target">
-                                <rect key="frame" x="503" y="278" width="44" height="44"/>
+                                <rect key="frame" x="306" y="311.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="dVO-7j-9HI"/>
                                     <constraint firstAttribute="width" constant="44" id="mcf-ml-h89"/>
@@ -99,19 +108,19 @@
                                 <state key="normal" title="Button" image="like"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                        <color key="value" red="0.23137254901960785" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.23137254901960785" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="dotFirstColor">
-                                        <color key="value" red="0.28235294117647058" green="0.80784313725490198" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.28235294117647058" green="0.80784313725490198" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="dotSecondColor">
-                                        <color key="value" red="0.36078431372549019" green="0.61960784313725492" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.36078431372549019" green="0.61960784313725492" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="circleFromColor">
-                                        <color key="value" red="0.36078431372549019" green="0.61960784313725492" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.36078431372549019" green="0.61960784313725492" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="circleToColor">
-                                        <color key="value" red="0.28235294117647058" green="0.80784313725490198" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.28235294117647058" green="0.80784313725490198" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -119,7 +128,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xnp-Bx-c8g" secondAttribute="bottom" constant="60" id="3kD-VX-Nuj"/>
                             <constraint firstItem="E0d-Bk-ChU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1:4" id="79R-Js-ei0"/>
