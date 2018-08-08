@@ -35,14 +35,24 @@ class ViewController: UIViewController, FaveButtonDelegate{
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool){
     }
     
-    func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{
+    func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]? {
         if( faveButton === heartButton || faveButton === loveButton){
             return colors
         }
         return nil
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc private func doubleTapped() {
+        heartButton?.displayAnimation()
+        loveButton?.displayAnimation()
+    }
 }
-
-
 
 
