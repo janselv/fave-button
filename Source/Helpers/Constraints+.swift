@@ -25,7 +25,7 @@
 import UIKit
 
 
-struct Constraint{
+struct Constraint {
     var identifier: String?
     
     var attribute: NSLayoutConstraint.Attribute = .centerX
@@ -35,7 +35,7 @@ struct Constraint{
     var relation: NSLayoutConstraint.Relation = .equal
 }
 
-func attributes(_ attrs:NSLayoutConstraint.Attribute...) -> [NSLayoutConstraint.Attribute]{
+func attributes(_ attrs:NSLayoutConstraint.Attribute...) -> [NSLayoutConstraint.Attribute] {
     return attrs
 }
 
@@ -84,7 +84,7 @@ infix operator >>- : DefaultPrecedence
 
 
 func >>- <T:UIView> (lhs: (T,T),attributes: [NSLayoutConstraint.Attribute]){
-    for attribute in attributes{
+    for attribute in attributes {
         lhs >>- { (i: inout Constraint) in
             i.attribute = attribute
         }
@@ -93,7 +93,7 @@ func >>- <T:UIView> (lhs: (T,T),attributes: [NSLayoutConstraint.Attribute]){
 
 
 func >>- <T:UIView> (lhs: T, attributes: [NSLayoutConstraint.Attribute]){
-    for attribute in attributes{
+    for attribute in attributes {
         lhs >>- { (i: inout Constraint) in
             i.attribute = attribute
         }

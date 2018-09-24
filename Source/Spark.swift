@@ -48,7 +48,7 @@ class Spark: UIView {
     
     fileprivate var distanceConstraint: NSLayoutConstraint?
     
-    init(radius: CGFloat, firstColor: UIColor, secondColor: UIColor, angle: Double, dotRadius: DotRadius){
+    init(radius: CGFloat, firstColor: UIColor, secondColor: UIColor, angle: Double, dotRadius: DotRadius) {
         self.radius      = radius
         self.firstColor  = firstColor
         self.secondColor = secondColor
@@ -66,11 +66,11 @@ class Spark: UIView {
 
 
 // MARK: create
-extension Spark{
+extension Spark {
     
-    class func createSpark(_ faveButton: FaveButton, radius: CGFloat, firstColor: UIColor, secondColor: UIColor, angle: Double, dotRadius: DotRadius) -> Spark{
+    class func createSpark(_ faveButton: FaveButton, radius: CGFloat, firstColor: UIColor, secondColor: UIColor, angle: Double, dotRadius: DotRadius) -> Spark {
         
-        let spark = Init(Spark(radius: radius, firstColor: firstColor, secondColor: secondColor, angle: angle, dotRadius: dotRadius)){
+        let spark = Init(Spark(radius: radius, firstColor: firstColor, secondColor: secondColor, angle: angle, dotRadius: dotRadius)) {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.backgroundColor                           = .clear
             $0.layer.anchorPoint                         = CGPoint(x: 0.5, y: 1)
@@ -97,13 +97,13 @@ extension Spark{
     }
     
     
-    fileprivate func applyInit(){
+    fileprivate func applyInit() {
         dotFirst  = createDotView(dotRadius.first,  fillColor: firstColor)
         dotSecond = createDotView(dotRadius.second, fillColor: secondColor)
         
         
         (dotFirst, self) >>- [.trailing]
-        attributes(.width, .height).forEach{ attr in
+        attributes(.width, .height).forEach { attr in
             dotFirst >>- {
                 $0.attribute  = attr
                 $0.constant   = CGFloat(dotRadius.first * 2.0)
@@ -112,7 +112,7 @@ extension Spark{
         }
         
         (dotSecond,self) >>- [.leading]
-        attributes(.width,.height).forEach{ attr in
+        attributes(.width,.height).forEach { attr in
             dotSecond >>- {
                 $0.attribute  = attr
                 $0.constant   = CGFloat(dotRadius.second * 2.0)
@@ -135,7 +135,7 @@ extension Spark{
     }
     
     
-    fileprivate func createDotView(_ radius: Double, fillColor: UIColor) -> UIView{
+    fileprivate func createDotView(_ radius: Double, fillColor: UIColor) -> UIView {
         let dot = Init(UIView(frame: CGRect.zero)){
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.backgroundColor                           = fillColor
@@ -150,7 +150,7 @@ extension Spark{
 
 // MARK: animation
 extension Spark{
-    func animateIgniteShow(_ radius: CGFloat, duration:Double, delay: Double = 0){
+    func animateIgniteShow(_ radius: CGFloat, duration:Double, delay: Double = 0) {
         self.layoutIfNeeded()
         
         let diameter = (dotRadius.first * 2.0) + (dotRadius.second * 2.0)
@@ -162,11 +162,11 @@ extension Spark{
         
         UIView.animate(withDuration: 0, delay: delay, options: .curveLinear, animations: {
             self.alpha = 1
-            }, completion: nil)
+        }, completion: nil)
         
         UIView.animate(withDuration: duration * 0.7, delay: delay, options: .curveEaseOut, animations: {
             self.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     
@@ -180,7 +180,7 @@ extension Spark{
             options: .curveEaseOut,
             animations: {
                 self.layoutIfNeeded()
-            }, completion: { succeed in
+        }, completion: { succeed in
         })
         
         UIView.animate(
@@ -190,7 +190,7 @@ extension Spark{
             animations: {
                 self.dotSecond.backgroundColor = self.firstColor
                 self.dotFirst.backgroundColor  = self.secondColor
-            }, completion: nil)
+        }, completion: nil)
         
         
         for dot in [dotFirst, dotSecond]{
@@ -199,14 +199,14 @@ extension Spark{
                 $0.constant = 0
             }
         }
-    
+        
         UIView.animate(
             withDuration: duration,
             delay: delay,
             options: .curveEaseOut,
             animations: {
                 self.dotSecond.layoutIfNeeded()
-            }, completion:nil)
+        }, completion:nil)
         
         
         UIView.animate(
@@ -215,10 +215,10 @@ extension Spark{
             options: .curveEaseOut,
             animations: {
                 self.dotFirst.layoutIfNeeded()
-            }, completion: { succeed  in
-                
-                self.removeFromSuperview()
-        })
+        }, completion: { succeed  in
+            self.removeFromSuperview()
+        }
+        )
     }
 }
 

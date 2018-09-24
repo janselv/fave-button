@@ -30,13 +30,13 @@ typealias ElasticEasing = (_ t:CGFloat,_ b:CGFloat,_ c:CGFloat,_ d:CGFloat,_ a:C
 
 // ELASTIC EASING
 
-struct Elastic{
-    static var EaseIn :Easing    = { (_t,b,c,d) -> CGFloat in
+struct Elastic {
+    static var EaseIn: Easing = { (_t,b,c,d) -> CGFloat in
         var t = _t
         
-        if t==0{ return b }
+        if t==0 { return b }
         t/=d
-        if t==1{ return b+c }
+        if t==1 { return b+c }
         
         let p = d * 0.3
         let a = c
@@ -46,12 +46,12 @@ struct Elastic{
         return -(a*pow(2,10*t) * sin( (t*d-s)*(2*CGFloat(Double.pi))/p )) + b;
     }
     
-    static var EaseOut :Easing   = { (_t,b,c,d) -> CGFloat in
+    static var EaseOut: Easing = { (_t,b,c,d) -> CGFloat in
         var t = _t
         
-        if t==0{ return b }
+        if t==0 { return b }
         t/=d
-        if t==1{ return b+c}
+        if t==1 { return b+c }
         
         let p = d * 0.3
         let a = c
@@ -60,9 +60,9 @@ struct Elastic{
         return (a*pow(2,-10*t) * sin( (t*d-s)*(2*CGFloat(Double.pi))/p ) + c + b);
     }
     
-    static var EaseInOut :Easing = { (_t,b,c,d) -> CGFloat in
+    static var EaseInOut: Easing = { (_t,b,c,d) -> CGFloat in
         var t = _t
-        if t==0{ return b}
+        if t==0 { return b }
         
         t = t/(d/2)
         if t==2{ return b+c }
@@ -81,8 +81,9 @@ struct Elastic{
 }
 
 
-extension Elastic{
-    static var ExtendedEaseIn :ElasticEasing    = { (_t,b,c,d,_a,_p) -> CGFloat in
+extension Elastic {
+    
+    static var ExtendedEaseIn: ElasticEasing = { (_t,b,c,d,_a,_p) -> CGFloat in
         var t = _t
         var a = _a
         var p = _p
@@ -104,7 +105,7 @@ extension Elastic{
     }
     
     
-    static var ExtendedEaseOut :ElasticEasing    = { (_t,b,c,d,_a,_p) -> CGFloat in
+    static var ExtendedEaseOut: ElasticEasing = { (_t,b,c,d,_a,_p) -> CGFloat in
         var s:CGFloat = 0.0
         var t = _t
         var a = _a
@@ -113,7 +114,7 @@ extension Elastic{
         if t==0 { return b }
         
         t /= d
-        if t==1 {return b+c}
+        if t==1 { return b+c }
         
         if a < abs(c) {
             a=c;  s = p/4;
@@ -124,21 +125,21 @@ extension Elastic{
     }
     
     
-    static var ExtendedEaseInOut :ElasticEasing    = { (_t,b,c,d,_a,_p) -> CGFloat in
+    static var ExtendedEaseInOut: ElasticEasing = { (_t,b,c,d,_a,_p) -> CGFloat in
         var s:CGFloat = 0.0
         var t = _t
         var a = _a
         var p = _p
         
-        if t==0{ return b }
+        if t==0 { return b }
         
         t /= d/2
         
-        if t==2{ return b+c }
+        if t==2 { return b+c }
         
         if a < abs(c) {
             a=c; s=p/4;
-        }else {
+        } else {
             s = p/(2*CGFloat(Double.pi)) * asin (c/a)
         }
         
