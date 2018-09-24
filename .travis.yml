@@ -15,7 +15,3 @@ script:
       -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c  
 
 # SWIFT_VERSION: 4.0
-
-branches:
-only:
-- master

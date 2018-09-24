@@ -102,7 +102,7 @@ extension FaveIcon{
         
         let selectedDelay = isSelected ? delay : 0
         
-        if isSelected{
+        if isSelected {
             self.alpha = 0
             UIView.animate(
                 withDuration: 0,
