@@ -69,8 +69,7 @@ open class FaveButton: UIButton {
         didSet{
             guard self.animationsEnabled else {
                 return
-            }
-            
+            }            
             animateSelect(self.isSelected, duration: Const.duration)
         }
     }

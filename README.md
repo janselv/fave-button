@@ -14,7 +14,7 @@ Favorite Animated Button written in Swift
 
 ## Requirements
 
-- iOS 9.0+
+- iOS 8.0+
 - Xcode 9
 
 ## Installation

@@ -27,6 +27,8 @@ class ViewController: UIViewController, FaveButtonDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // optional, set default selected fave-buttons with initial
+        // startup animation disabled.
         self.heartButton?.setSelected(selected: true, animated: false)
         
         self.loveButton?.setSelected(selected: true, animated: false)
@@ -40,12 +42,6 @@ class ViewController: UIViewController, FaveButtonDelegate{
         DotColors(first: color(0xE9A966), second: color(0xF8C852)),        
         DotColors(first: color(0xF68FA7), second: color(0xF6A2B8))
     ]
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        heartButton?.isSelected = true
-    }
     
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool) {
     }
