@@ -91,7 +91,9 @@ extension FaveIcon{
 extension FaveIcon{
     
     func animateSelect(_ isSelected: Bool = false, fillColor: UIColor, duration: Double = 0.5, delay: Double = 0){
-        if nil == tweenValues{
+        let animate = duration > 0.0
+        
+        if nil == tweenValues && animate {
             tweenValues = generateTweenValues(from: 0, to: 1.0, duration: CGFloat(duration))
         }
         
@@ -111,6 +113,10 @@ extension FaveIcon{
                 animations: {
                     self.alpha = 1
                 }, completion: nil)
+        }
+        
+        guard animate else {
+            return
         }
         
         let scaleAnimation = Init(CAKeyframeAnimation(keyPath: "transform.scale")){

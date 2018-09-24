@@ -24,6 +24,15 @@ class ViewController: UIViewController, FaveButtonDelegate{
     @IBOutlet var heartButton: FaveButton?
     @IBOutlet var loveButton : FaveButton?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.heartButton?.setSelected(selected: true, animated: false)
+        
+        self.loveButton?.setSelected(selected: true, animated: false)
+        self.loveButton?.setSelected(selected: false, animated: false)
+    }
+    
     let colors = [
         DotColors(first: color(0x7DC2F4), second: color(0xE2264D)),
         DotColors(first: color(0xF8CC61), second: color(0x9BDFBA)),
