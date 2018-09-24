@@ -2,8 +2,10 @@ language: objective-c
 osx_image: xcode9.2
 
 xcode_project: FaveButtonDemo/FaveButtonDemo.xcodeproj
-schema: FaveButton
+xcode_scheme: FaveButton
 xcode_sdk: iphonesimulator11.2
+
+# SWIFT_VERSION: 4.0
 
 branches:
 only:

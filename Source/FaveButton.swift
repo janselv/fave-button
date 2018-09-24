@@ -66,7 +66,7 @@ open class FaveButton: UIButton {
     
     
     override open var isSelected: Bool{
-        didSet {
+        didSet{
             animateSelect(self.isSelected, duration: Const.duration)
         }
     }

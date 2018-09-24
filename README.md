@@ -14,8 +14,8 @@ Favorite Animated Button written in Swift
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 7.3
+- iOS 9.0+
+- Xcode 9
 
 ## Installation
 
@@ -24,9 +24,7 @@ For manual instalation, drag Source folder into your project.
 os use [CocoaPod](https://cocoapods.org) adding this line to you `Podfile`:
 
 ```ruby
-pod 'FaveButton', '~> 1.2.1' swift 2.2
-
-pod 'FaveButton', '~> 2.0.3' swift 3
+pod 'FaveButton'
 ```
 
 for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you `Cartfile`
