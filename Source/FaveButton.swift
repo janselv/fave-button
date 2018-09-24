@@ -25,8 +25,8 @@
 import UIKit
 
 
-
 public typealias DotColors = (first: UIColor, second: UIColor)
+
 
 public protocol FaveButtonDelegate{
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool)
@@ -66,7 +66,7 @@ open class FaveButton: UIButton {
     
     
     override open var isSelected: Bool{
-        didSet{
+        didSet {
             animateSelect(self.isSelected, duration: Const.duration)
         }
     }
@@ -130,7 +130,7 @@ extension FaveButton{
         
         for index in 0..<sparkGroupCount{
             let theta  = step * Double(index) + offset
-            let colors = dotColors(atIndex: index)
+            let colors = dotColors(at: index)
             
             let spark  = Spark.createSpark(self, radius: radius, firstColor: colors.first,secondColor: colors.second, angle: theta,
                                            dotRadius: dotRadius)
@@ -144,7 +144,7 @@ extension FaveButton{
 // MARK: utils
 
 extension FaveButton{
-    fileprivate func dotColors(atIndex index: Int) -> DotColors{
+    fileprivate func dotColors(at index: Int) -> DotColors{
         if case let delegate as FaveButtonDelegate = delegate , nil != delegate.faveButtonDotColors(self){
             let colors     = delegate.faveButtonDotColors(self)!
             let colorIndex = 0..<colors.count ~= index ? index : index % colors.count
@@ -178,7 +178,7 @@ extension FaveButton{
 
 
 // MARK: animation
-extension FaveButton{
+extension FaveButton {
     fileprivate func animateSelect(_ isSelected: Bool, duration: Double){
         let color  = isSelected ? selectedColor : normalColor
         
@@ -202,22 +202,3 @@ extension FaveButton{
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

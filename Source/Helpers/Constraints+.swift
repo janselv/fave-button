@@ -24,6 +24,14 @@
 
 import UIKit
 
+precedencegroup ConstrPrecedence {
+    associativity: left
+    higherThan: AssignmentPrecedence
+}
+
+//infix operator >>- { associativity left precedence 160 }
+infix operator >>- : ConstrPrecedence
+
 
 struct Constraint{
     var identifier: String?
@@ -38,10 +46,6 @@ struct Constraint{
 func attributes(_ attrs:NSLayoutAttribute...) -> [NSLayoutAttribute]{
     return attrs
 }
-
-//infix operator >>- { associativity left precedence 160 }
-infix operator >>- : DefaultPrecedence
-
 
 @discardableResult func >>- <T: UIView> (lhs: (T,T), apply: (inout Constraint) -> () ) -> NSLayoutConstraint {
     var const = Constraint()

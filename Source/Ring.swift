@@ -219,13 +219,3 @@ extension Ring : CAAnimationDelegate{
 }
 
 
-
-
-
-
-
-
-
-
-
-
