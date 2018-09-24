@@ -75,6 +75,17 @@ open class FaveButton: UIButton {
         }
         
         self.isSelected = isSelected
+        
+        guard case let delegate as FaveButtonDelegate = self.delegate else {
+            return
+        }
+        
+        delegate.faveButton(self, didSelected: isSelected, hasFinishedAnimating: false)
+        
+        let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delay){
+            delegate.faveButton(self, didSelected: isSelected, hasFinishedAnimating: true)
+        }
     }
     
     convenience public init(frame: CGRect, faveIconNormal: UIImage?) {
@@ -173,17 +184,6 @@ extension FaveButton {
     
     @objc func toggle(_ sender: FaveButton) {
         sender.setSelected(!sender.isSelected, animated: true)
-        
-        guard case let delegate as FaveButtonDelegate = self.delegate else {
-            return
-        }
-        
-        delegate.faveButton(sender, didSelected: sender.isSelected, hasFinishedAnimating: false)
-        
-        let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: delay){
-            delegate.faveButton(sender, didSelected: sender.isSelected, hasFinishedAnimating: true)
-        }
     }
 }
 
