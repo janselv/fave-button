@@ -1,9 +1,19 @@
 language: objective-c
 osx_image: xcode9.2
 
-xcode_project: FaveButtonDemo/FaveButtonDemo.xcodeproj
-xcode_scheme: FaveButton
-xcode_sdk: iphonesimulator11.2
+# xcode_project: FaveButtonDemo/FaveButtonDemo.xcodeproj
+# xcode_scheme: FaveButton
+# xcode_sdk: iphonesimulator11.2
+
+install:
+  - gem install xcpretty
+
+script:
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild clean
+  - xcodebuild -project FaveButtonDemo/FaveButtonDemo.xcodeproj -scheme "FaveButton" -sdk iphonesimulator11.2
+      -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c  
 
 # SWIFT_VERSION: 4.0
 
