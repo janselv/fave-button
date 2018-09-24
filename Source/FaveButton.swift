@@ -28,8 +28,8 @@ import UIKit
 
 public typealias DotColors = (first: UIColor, second: UIColor)
 
-public protocol FaveButtonDelegate{
-    func faveButton(_ faveButton: FaveButton, didSelected selected: Bool)
+public protocol FaveButtonDelegate {
+    func faveButton(_ faveButton: FaveButton, didSelected selected: Bool, hasFinishedAnimating: Bool)
     
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?
 }
@@ -37,7 +37,9 @@ public protocol FaveButtonDelegate{
 
 // MARK: Default implementation
 public extension FaveButtonDelegate {
-    func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{ return nil }
+    func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]? {
+        return nil
+    }
 }
 
 open class FaveButton: UIButton {
@@ -63,22 +65,16 @@ open class FaveButton: UIButton {
     
     fileprivate var faveIconImage:UIImage?
     fileprivate var faveIcon: FaveIcon!
-    
-    
-    //    override open var isSelected: Bool {
-    //        didSet {
-    //            select(isSelected)
-    //        }
-    //    }
+
     
     open func setSelected(_ isSelected: Bool, animated: Bool) {
-        self.isSelected = isSelected
-        
         if animated {
             animateSelect(isSelected, duration: Const.duration)
         } else {
             select(isSelected)
         }
+        
+        self.isSelected = isSelected
     }
     
     convenience public init(frame: CGRect, faveIconNormal: UIImage?) {
@@ -178,13 +174,15 @@ extension FaveButton {
     @objc func toggle(_ sender: FaveButton) {
         sender.setSelected(!sender.isSelected, animated: true)
         
-        guard case let delegate as FaveButtonDelegate = self.delegate else{
+        guard case let delegate as FaveButtonDelegate = self.delegate else {
             return
         }
         
+        delegate.faveButton(sender, didSelected: sender.isSelected, hasFinishedAnimating: false)
+        
         let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delay){
-            delegate.faveButton(sender, didSelected: sender.isSelected)
+            delegate.faveButton(sender, didSelected: sender.isSelected, hasFinishedAnimating: true)
         }
     }
 }
