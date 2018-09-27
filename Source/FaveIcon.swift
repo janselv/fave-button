@@ -91,7 +91,10 @@ extension FaveIcon {
 extension FaveIcon {
     
     func select(_ select: Bool, fillColor: UIColor) {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
         iconLayer.fillColor = fillColor.cgColor
+        CATransaction.commit()
     }
     
     func selectAnimated(_ isSelected: Bool = false, fillColor: UIColor, duration: Double = 0.5, delay: Double = 0) {
