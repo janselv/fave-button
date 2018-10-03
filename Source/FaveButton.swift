@@ -28,10 +28,12 @@ import UIKit
 
 public typealias DotColors = (first: UIColor, second: UIColor)
 
-public protocol FaveButtonDelegate {
+public protocol FaveButtonDelegate: class {
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool, hasFinishedAnimating: Bool)
     
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?
+    
+    func shouldAnimateOnToggle() -> (selection: Bool, deselection: Bool)
 }
 
 
@@ -39,6 +41,10 @@ public protocol FaveButtonDelegate {
 public extension FaveButtonDelegate {
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]? {
         return nil
+    }
+    
+    func shouldAnimateOnToggle() -> (selection: Bool, deselection: Bool) {
+        return (true, true)
     }
 }
 
@@ -76,7 +82,7 @@ open class FaveButton: UIButton {
         
         self.isSelected = isSelected
         
-        guard case let delegate as FaveButtonDelegate = self.delegate else {
+        guard let delegate = self.delegate as? FaveButtonDelegate else {
             return
         }
         
@@ -164,7 +170,7 @@ extension FaveButton {
 extension FaveButton {
     
     fileprivate func dotColors(atIndex index: Int) -> DotColors {
-        if case let delegate as FaveButtonDelegate = delegate , nil != delegate.faveButtonDotColors(self){
+        if let delegate = self.delegate as? FaveButtonDelegate, delegate.faveButtonDotColors(self) != nil {
             let colors     = delegate.faveButtonDotColors(self)!
             let colorIndex = 0..<colors.count ~= index ? index : index % colors.count
             
@@ -178,12 +184,23 @@ extension FaveButton {
 // MARK: actions
 extension FaveButton {
     
-    func addActions() {
+    fileprivate func addActions() {
         self.addTarget(self, action: #selector(toggle(_:)), for: .touchUpInside)
     }
     
     @objc func toggle(_ sender: FaveButton) {
-        sender.setSelected(!sender.isSelected, animated: true)
+        let shouldSelect = !sender.isSelected
+        var shouldAnimate = true
+        
+        if let delegate = self.delegate as? FaveButtonDelegate {
+            if shouldSelect {
+                shouldAnimate = delegate.shouldAnimateOnToggle().selection
+            } else {
+                shouldAnimate = delegate.shouldAnimateOnToggle().deselection
+            }
+        }
+        
+        sender.setSelected(shouldSelect, animated: shouldAnimate)
     }
 }
 
