@@ -33,7 +33,7 @@ public protocol FaveButtonDelegate: class {
     
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?
     
-    func shouldAnimateOnToggle() -> (selection: Bool, deselection: Bool)
+    func shouldAnimateOnToggle(_ faveButton: FaveButton) -> (selection: Bool, deselection: Bool)
 }
 
 
@@ -43,7 +43,7 @@ public extension FaveButtonDelegate {
         return nil
     }
     
-    func shouldAnimateOnToggle() -> (selection: Bool, deselection: Bool) {
+    func shouldAnimateOnToggle(_ faveButton: FaveButton) -> (selection: Bool, deselection: Bool) {
         return (true, true)
     }
 }
@@ -194,9 +194,9 @@ extension FaveButton {
         
         if let delegate = self.delegate as? FaveButtonDelegate {
             if shouldSelect {
-                shouldAnimate = delegate.shouldAnimateOnToggle().selection
+                shouldAnimate = delegate.shouldAnimateOnToggle(self).selection
             } else {
-                shouldAnimate = delegate.shouldAnimateOnToggle().deselection
+                shouldAnimate = delegate.shouldAnimateOnToggle(self).deselection
             }
         }
         
