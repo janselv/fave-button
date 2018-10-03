@@ -73,7 +73,7 @@ open class FaveButton: UIButton {
     fileprivate var faveIcon: FaveIcon!
 
     
-    open func setSelected(_ isSelected: Bool, animated: Bool) {
+    open func setSelected(_ isSelected: Bool, animated: Bool, interactively: Bool = true) {
         if animated {
             animateSelect(isSelected, duration: Const.duration)
         } else {
@@ -82,7 +82,7 @@ open class FaveButton: UIButton {
         
         self.isSelected = isSelected
         
-        guard let delegate = self.delegate as? FaveButtonDelegate else {
+        guard interactively, let delegate = self.delegate as? FaveButtonDelegate else {
             return
         }
         
@@ -200,7 +200,7 @@ extension FaveButton {
             }
         }
         
-        sender.setSelected(shouldSelect, animated: shouldAnimate)
+        sender.setSelected(shouldSelect, animated: shouldAnimate, interactively: true)
     }
 }
 
