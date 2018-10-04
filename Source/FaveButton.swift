@@ -189,7 +189,11 @@ extension FaveButton {
     }
     
     @objc func toggle(_ sender: FaveButton) {
-        let shouldSelect = !sender.isSelected
+        toggle()
+    }
+    
+    open func toggle() {
+        let shouldSelect = !self.isSelected
         var shouldAnimate = true
         
         if let delegate = self.delegate as? FaveButtonDelegate {
@@ -200,7 +204,7 @@ extension FaveButton {
             }
         }
         
-        sender.setSelected(shouldSelect, animated: shouldAnimate, interactively: true)
+        setSelected(shouldSelect, animated: shouldAnimate, interactively: true)
     }
 }
 
