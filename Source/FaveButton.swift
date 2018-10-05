@@ -42,6 +42,7 @@ public protocol FaveButtonDelegate{
 // MARK: Default implementation
 public extension FaveButtonDelegate{
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{ return nil }
+    func instantCallback(_ faveButton: FaveButton, didSelected selected: Bool) { }
 }
 
 open class FaveButton: UIButton {
