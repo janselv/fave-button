@@ -187,17 +187,18 @@ extension FaveButton{
     }
     
     @objc func toggle(_ sender: FaveButton){
-        sender.isSelected = !sender.isSelected
+        let selected = !sender.isSelected
+        sender.isSelected = selected
         
         guard case let delegate as FaveButtonDelegate = self.delegate else{
             return
         }
 
-        delegate.instantCallback(sender, didSelected: sender.isSelected)
+        delegate.instantCallback(sender, didSelected: selected)
         
         let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delay){
-            delegate.faveButton(sender, didSelected: sender.isSelected)
+            delegate.faveButton(sender, didSelected: selected)
         }
     }
 }
