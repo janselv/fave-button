@@ -237,12 +237,12 @@
 					26FEF3241D0E158100D75731 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9T9Q2EVV88;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 					};
 					26FEF33E1D0E159B00D75731 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9T9Q2EVV88;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -467,8 +467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhamr.DemoFaveButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -486,8 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhamr.DemoFaveButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -509,8 +507,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -534,8 +531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhamr.FaveButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
