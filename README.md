@@ -68,7 +68,7 @@ func faveButtonDotColors(faveButton: FaveButton) -> [DotColors]?
 
 ```swift
 let faveButton = FaveButton(
-    frame: CGRect(x:200, y:200, width: 44, height: 44),
+	frame: CGRect(x:200, y:200, width: 44, height: 44),
     faveIconNormal: UIImage(named: "heart")
 )
 faveButton.delegate = self
@@ -80,7 +80,7 @@ view.addSubview(faveButton)
 If you want differents colors for dots like `Twitter’s Heart Animation` use the delegate method for the button you want.
 
 ```swift
-func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{
+func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]? {
 	if faveButton == myFaveButton{
 		// return dot colors
 	}
