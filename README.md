@@ -81,10 +81,10 @@ If you want differents colors for dots like `Twitter’s Heart Animation` use th
 
 ```swift
 func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]? {
-	if faveButton == myFaveButton{
-		// return dot colors
-	}
-	return nil
+  if faveButton == myFaveButton{
+	// return dot colors
+  }
+  return nil
 }
 ```
 
