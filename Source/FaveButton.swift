@@ -117,16 +117,25 @@ extension FaveButton{
     fileprivate func applyInit(){
         
         if nil == faveIconImage{
+            #if swift(>=4.2)
+            faveIconImage = image(for: UIControl.State())
+            #else
             faveIconImage = image(for: UIControlState())
+            #endif
         }
         
         guard let faveIconImage = faveIconImage else{
             fatalError("please provide an image for normal state.")
         }
         
+        #if swift(>=4.2)
+        setImage(UIImage(), for: UIControl.State())
+        setTitle(nil, for: UIControl.State())
+        #else
         setImage(UIImage(), for: UIControlState())
-        setImage(UIImage(), for: .selected)
         setTitle(nil, for: UIControlState())
+        #endif
+        setImage(UIImage(), for: .selected)
         setTitle(nil, for: .selected)
         
         faveIcon  = createFaveIcon(faveIconImage)
