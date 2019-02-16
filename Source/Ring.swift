@@ -159,7 +159,12 @@ extension Ring{
             $0.toValue        = toColor.cgColor
             $0.duration       = duration
             $0.beginTime      = CACurrentMediaTime() + delay
+            #if swift(>=4.2)
+            $0.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            #else
             $0.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            #endif
+            
         }
         
         return animation
@@ -171,9 +176,15 @@ extension Ring{
             $0.toValue             = strokeColor.cgColor
             $0.duration            = duration
             $0.beginTime           = CACurrentMediaTime() + delay
+            #if swift(>=4.2)
+            $0.fillMode            = CAMediaTimingFillMode.forwards
+            $0.timingFunction      = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            #else
             $0.fillMode            = kCAFillModeForwards
-            $0.isRemovedOnCompletion = false
             $0.timingFunction      = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            #endif
+            $0.isRemovedOnCompletion = false
+            
         }
         return animation
     }
@@ -184,9 +195,14 @@ extension Ring{
             $0.toValue              = lineWidth
             $0.duration             = duration
             $0.beginTime            = CACurrentMediaTime() + delay
-            $0.fillMode             = kCAFillModeForwards
             $0.isRemovedOnCompletion  = false
+            #if swift(>=4.2)
+            $0.fillMode             = CAMediaTimingFillMode.forwards
+            $0.timingFunction       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            #else
+            $0.fillMode             = kCAFillModeForwards
             $0.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            #endif
         }
         return animation
     }
@@ -199,9 +215,14 @@ extension Ring{
             $0.toValue              = path.cgPath
             $0.duration             = duration
             $0.beginTime            = CACurrentMediaTime() + delay
-            $0.fillMode             = kCAFillModeForwards
             $0.isRemovedOnCompletion  = false
+            #if swift(>=4.2)
+            $0.fillMode             = CAMediaTimingFillMode.forwards
+            $0.timingFunction       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            #else
+            $0.fillMode             = kCAFillModeForwards
             $0.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            #endif
         }
         return animation
     }
