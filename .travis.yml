@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.2
+osx_image: xcode10.3
 
 # xcode_project: FaveButtonDemo/FaveButtonDemo.xcodeproj
 # xcode_scheme: FaveButton
@@ -14,4 +14,4 @@ script:
   - xcodebuild -project FaveButtonDemo/FaveButtonDemo.xcodeproj -scheme "FaveButton" -sdk iphonesimulator11.2
       -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c  
 
-# SWIFT_VERSION: 4.0
+# SWIFT_VERSION: 5.0
