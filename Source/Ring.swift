@@ -162,7 +162,7 @@ extension Ring{
             #if swift(>=4.2)
             $0.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #else
-            $0.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            $0.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #endif
             
         }
@@ -180,8 +180,8 @@ extension Ring{
             $0.fillMode            = CAMediaTimingFillMode.forwards
             $0.timingFunction      = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #else
-            $0.fillMode            = kCAFillModeForwards
-            $0.timingFunction      = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            $0.fillMode            = CAMediaTimingFillMode.forwards
+            $0.timingFunction      = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #endif
             $0.isRemovedOnCompletion = false
             
@@ -200,8 +200,8 @@ extension Ring{
             $0.fillMode             = CAMediaTimingFillMode.forwards
             $0.timingFunction       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #else
-            $0.fillMode             = kCAFillModeForwards
-            $0.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            $0.fillMode             = CAMediaTimingFillMode.forwards
+            $0.timingFunction       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #endif
         }
         return animation
@@ -220,8 +220,8 @@ extension Ring{
             $0.fillMode             = CAMediaTimingFillMode.forwards
             $0.timingFunction       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #else
-            $0.fillMode             = kCAFillModeForwards
-            $0.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            $0.fillMode             = CAMediaTimingFillMode.forwards
+            $0.timingFunction       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             #endif
         }
         return animation
