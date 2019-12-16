@@ -31,7 +31,7 @@ pod 'FaveButton'
 for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you `Cartfile`
 
 ```ruby
-github "xhamr/fave-button"
+github "janselv/fave-button"
 ```
 
 
