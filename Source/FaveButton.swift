@@ -64,6 +64,7 @@ open class FaveButton: UIButton {
     fileprivate var faveIconImage:UIImage?
     fileprivate var faveIcon: FaveIcon!
     fileprivate var animationsEnabled = true
+    fileprivate var didUpdateConstraints = false
     
     override open var isSelected: Bool {
         didSet{
@@ -141,6 +142,9 @@ extension FaveButton{
         faveIcon  = createFaveIcon(faveIconImage)
         
         addActions()
+        if #available(iOS 11.0, *) {
+            self.setNeedsUpdateConstraints()
+        }
     }
     
     
@@ -231,6 +235,22 @@ extension FaveButton {
                 $0.animateIgniteShow(igniteToRadius, duration:0.4, delay: Const.collapseDuration/3.0)
                 $0.animateIgniteHide(0.7, delay: 0.2)
             }
+        }
+    }
+}
+
+// MARK: constraints
+extension FaveButton {
+    override open func updateConstraints() {
+        if didUpdateConstraints == false {
+            addFavButtonConstraints()
+        }
+        super.updateConstraints()
+    }
+    private func addFavButtonConstraints() {
+        if #available(iOS 11.0, *) {
+            self.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
+            self.heightAnchor.constraint(equalToConstant: frame.height).isActive = true
         }
     }
 }
