@@ -1,16 +1,16 @@
 # FaveButton
 
 [![CocoaPods](https://img.shields.io/cocoapods/p/FaveButton.svg)](https://cocoapods.org/pods/FaveButton)
-[![CocoaPods](https://img.shields.io/cocoapods/v/FaveButton.svg)](http://cocoapods.org/pods/FaveButton)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/xhamr/fave-button)
-[![codebeat badge](https://codebeat.co/badges/580517f8-efc8-4d20-89aa-900531610144)](https://codebeat.co/projects/github-com-xhamr-fave-button)
-[![Build Status](https://travis-ci.org/xhamr/fave-button.svg?branch=master)](https://travis-ci.org/xhamr/fave-button)
+[![CocoaPods](https://img.shields.io/cocoapods/v/FaveButton.svg)](https://cocoapods.org/pods/FaveButton)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/janselv/fave-button)
+[![codebeat badge](https://codebeat.co/badges/580517f8-efc8-4d20-89aa-900531610144)](https://codebeat.co/projects/github-com-janselv-fave-button-master)
+[![Build Status](https://travis-ci.org/janselv/fave-button.svg?branch=master)](https://travis-ci.org/janselv/fave-button)
 [![Swift 4.2](https://img.shields.io/badge/Swift-4.2-green.svg)](https://developer.apple.com/swift/)
 
 Favorite Animated Button written in Swift
 
 
-![preview](https://github.com/xhamr/fave-button/blob/master/fave-button1.gif)
+![preview](https://github.com/janselv/fave-button/blob/master/fave-button1.gif)
 
 
 ## Requirements
@@ -31,7 +31,7 @@ pod 'FaveButton'
 for [Carthage](https://github.com/Carthage/Carthage) users, add this line to you `Cartfile`
 
 ```ruby
-github "xhamr/fave-button"
+github "janselv/fave-button"
 ```
 
 
@@ -88,9 +88,9 @@ func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]? {
 }
 ```
 
-in [FaveButtonDemo](https://github.com/xhamr/fave-button/tree/master/FaveButtonDemo) you will find a set of color to cause dots appear like this:
+in [FaveButtonDemo](https://github.com/janselv/fave-button/tree/master/FaveButtonDemo) you will find a set of color to cause dots appear like this:
 
-![preview](https://github.com/xhamr/fave-button/blob/master/fave-button2.gif)
+![preview](https://github.com/janselv/fave-button/blob/master/fave-button2.gif)
 
 
 
