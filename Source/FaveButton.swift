@@ -29,7 +29,11 @@ public typealias DotColors = (first: UIColor, second: UIColor)
 
 
 public protocol FaveButtonDelegate{
+    // This callback happens after the animation in the UI finishes (which takes 1 second to complete)
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool)
+
+    // The instant callback is fired immediately when the user taps the button
+    func instantCallback(_ faveButton: FaveButton, didSelected selected: Bool) 
     
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?
 }
@@ -38,6 +42,7 @@ public protocol FaveButtonDelegate{
 // MARK: Default implementation
 public extension FaveButtonDelegate{
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{ return nil }
+    func instantCallback(_ faveButton: FaveButton, didSelected selected: Bool) { }
 }
 
 open class FaveButton: UIButton {
@@ -191,15 +196,18 @@ extension FaveButton{
     }
     
     @objc func toggle(_ sender: FaveButton){
-        sender.isSelected = !sender.isSelected
+        let selected = !sender.isSelected
+        sender.isSelected = selected
         
         guard case let delegate as FaveButtonDelegate = self.delegate else{
             return
         }
+
+        delegate.instantCallback(sender, didSelected: selected)
         
         let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Const.duration)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delay){
-            delegate.faveButton(sender, didSelected: sender.isSelected)
+            delegate.faveButton(sender, didSelected: selected)
         }
     }
 }
